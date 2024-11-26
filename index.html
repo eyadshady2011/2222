@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض بيانات الطلاب</title>
+    <style>
+        /* إعدادات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e9e9e9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .result h2 {
+            margin-bottom: 10px;
+            color: #4caf50;
+        }
+
+        footer {
+            margin-top: 20px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>نظام عرض بيانات الطلاب</h1>
+        <p>أدخل رقم الطالب للحصول على المعلومات</p>
+    </header>
+
+    <div>
+        <input type="text" id="studentId" placeholder="أدخل رقم الطالب">
+        <button onclick="showStudentData()">عرض البيانات</button>
+    </div>
+
+    <div class="result" id="result">
+        <h2 id="name">اسم الطالب: </h2>
+        <p id="details"></p>
+    </div>
+
+    <footer>
+        &copy; 2024 نظام الطلاب. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        function showStudentData() {
+            // الحصول على رقم الطالب
+            const studentId = document.getElementById('studentId').value;
+            const resultDiv = document.getElementById('result');
+            const nameField = document.getElementById('name');
+            const detailsField = document.getElementById('details');
+
+            // إخفاء النتيجة الافتراضية
+            resultDiv.style.display = 'none';
+
+            // بيانات الطلاب
+            const students = {
+                "111111": {
+                    name: "إياد شادي",
+                    details: "في الصف الثالث الإعدادي - السعودية - العمر: 13 سنة"
+                },
+                "222222": {
+                    name: "كريم طارق",
+                    details: "في الصف الثالث الإعدادي - مصر - العمر: 14 سنة"
+                },
+                "333333": {
+                    name: "محمد طارق",
+                    details: "في الصف الثاني الإعدادي - مصر - العمر: 12 سنة"
+                }
+            };
+
+            // تحقق من وجود الطالب
+            if (students[studentId]) {
+                nameField.textContent = `اسم الطالب: ${students[studentId].name}`;
+                detailsField.textContent = students[studentId].details;
+                resultDiv.style.display = 'block';
+            } else {
+                alert("رقم الطالب غير موجود. حاول مرة أخرى.");
+            }
+        }
+    </script>
+</body>
+</html>
+
+
